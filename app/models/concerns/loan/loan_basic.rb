@@ -1,4 +1,4 @@
-module Loan
+class Loan < ApplicationRecord
   module LoanBasic
     extend ActiveSupport::Concern
 
