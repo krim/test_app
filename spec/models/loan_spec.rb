@@ -11,6 +11,7 @@ RSpec.describe Loan, type: :model do
     end
 
     it { should validate_numericality_of(:amount).is_greater_than(0) }
+    it { should validate_inclusion_of(:period).in_range(1..12) }
   end
 
   describe "#basic" do
@@ -67,6 +68,12 @@ RSpec.describe Loan, type: :model do
       payment = loan.create_payment!(expiration: false, last_payment: true)
       expect(payment.amount.to_f.round(2)).to eq(525_000.0)
       expect(loan.year_income_profit.to_f).to eq(20)
+    end
+
+    it 'can calculate expiration and last payment' do
+      payment = loan.create_payment!(expiration: true, last_payment: true)
+      expect(payment.amount.to_f.round(2)).to eq(1_041_666.67)
+      expect(loan.year_income_profit.to_f).to eq(8)
     end
   end
 end

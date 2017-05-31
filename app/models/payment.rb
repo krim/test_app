@@ -7,7 +7,9 @@ class Payment < ApplicationRecord
   validates :month, inclusion: { in: ->(payment) { 1..payment.loan_term } }
 
   def amount
-    if last_payment?
+    if last_payment? && expiration?
+      loan.last_expiration_payment
+    elsif last_payment?
       loan.last_pay
     elsif expiration?
       loan.expiration_pay

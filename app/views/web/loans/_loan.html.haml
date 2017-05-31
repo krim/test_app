@@ -1,0 +1,8 @@
+%tr
+  %td= link_to loan.title, loan_path(loan)
+  %td= number_to_currency loan.amount
+  %td= loan.term
+  %td= loan.period
+  %td= number_to_percentage loan.year_rate, precision: 0
+  %td= number_to_percentage loan.expiration_rate, precision: 0
+  %td= boolean_badge !loan.can_make_more_payments?

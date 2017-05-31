@@ -1,0 +1,12 @@
+= simple_form_for loan, remote: true do |f|
+  .row
+    .col-lg-12
+      = f.input :title, wrapper: "horizontal_input_group"
+  .row
+    .col-lg-4= f.input :amount, wrapper: "horizontal_input_group"
+    .col-lg-2= f.input :term, wrapper: "horizontal_input_group"
+    .col-lg-2= f.input :period, wrapper: "horizontal_input_group"
+    .col-lg-2= f.input :year_rate, wrapper: "horizontal_input_group"
+    .col-lg-2= f.input :expiration_rate, wrapper: "horizontal_input_group"
+  .row
+    .col-lg-12= f.submit t('buttons.create'), class: 'btn btn-danger btn-submit'

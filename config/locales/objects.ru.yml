@@ -1,0 +1,10 @@
+ru:
+  loan:
+    new: 'Новый займ'
+  payment:
+    new: 'Новый платеж'
+  buttons:
+    create: 'Создать'
+  profit:
+    title: 'Доходность'
+    year: 'Доходность годовых'

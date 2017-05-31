@@ -1,0 +1,29 @@
+ru:
+  activerecord:
+    models:
+      loan:
+        one: "Заем"
+        few: "Займа"
+        many: "Займов"
+        other: "Займы"
+      payment:
+        one: "Выплата"
+        few: "Выплаты"
+        many: "Выплат"
+        other: "Выплаты"
+    attributes:
+      loan:
+        title: 'Название'
+        amount: 'Сумма'
+        term: 'Срок(мес)'
+        period: 'Период'
+        year_rate: 'Годовая ставка(%)'
+        expiration_rate: 'Ставка просрочки(%)'
+        can_make_more_payments: 'Выплачен?'
+      payment:
+        loan: 'Заем'
+        loan_id: 'Заем'
+        amount: 'Сумма оплаты'
+        month: 'Месяц'
+        expiration: 'Просрочка?'
+        last_payment: 'Последний платеж?'

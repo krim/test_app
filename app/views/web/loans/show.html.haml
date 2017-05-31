@@ -1,0 +1,26 @@
+%h1= @loan.title
+
+.divider-new.wow.fadeIn.mb-0
+  %h2= I18n.t('activerecord.models.payment.other')
+%table.table.payments_list
+  %thead
+    %tr
+      - %w[amount month expiration last_payment].each do |column|
+        %th= I18n.t("activerecord.attributes.payment.#{column}")
+
+  %tbody
+    = render @loan.payments
+
+.divider-new.wow.fadeIn.mb-0
+  %h2= I18n.t('profit.title')
+.container
+  %p
+    = "#{I18n.t('profit.year')}: #{number_to_percentage @loan.year_income_profit, precision: 0}"
+
+- if @loan.can_make_more_payments?
+  .container#new_payment_container
+    .row
+      .col-lg-12
+        .divider-new.wow.fadeIn.mb-0
+          %h2= I18n.t('payment.new')
+    = render partial: 'web/payments/form', locals: { loan: @loan }

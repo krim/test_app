@@ -16,6 +16,9 @@ gem 'jquery-rails'
 gem 'turbolinks', '~> 5'
 gem 'autoprefixer-rails'
 gem 'hamlit'
+gem 'font-awesome-rails'
+gem 'kaminari'
+gem 'simple_form'
 
 group :development, :test do
   gem 'pry-byebug'
@@ -56,6 +59,7 @@ group :development do
 end
 
 source 'https://rails-assets.org' do
+  gem 'rails-assets-jquery-migrate'
   gem 'rails-assets-MDBootstrap', '4.3.2'
   gem 'rails-assets-tether'
 end

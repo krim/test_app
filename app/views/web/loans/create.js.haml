@@ -1,0 +1,7 @@
+- if @loan.persisted?
+  $('.loans_list tbody').append('#{escape_javascript render @loan}');
+  $('.loans_list tbody tr:last').addClass("red").delay(1000).queue( function(){ $(this).removeClass("red").dequeue(); });
+- else
+  $('#new_loan').html('#{escape_javascript render partial: 'web/loans/form', locals: { loan: @loan }}');
+Materialize.updateTextFields();
+initMDB();

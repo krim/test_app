@@ -1,0 +1,10 @@
+- if @payment
+  $('.payments_list tbody').append('#{escape_javascript render @payment}');
+  $('.payments_list tbody tr:last').addClass("red").delay(1000).queue( function(){ $(this).removeClass("red").dequeue(); });
+- else
+  $('#new_payment').html('#{escape_javascript render partial: 'web/payments/form', locals: { loan: @loan }}');
+
+- unless @loan.can_make_more_payments?
+  $('#new_payment_container').remove();
+Materialize.updateTextFields();
+initMDB();

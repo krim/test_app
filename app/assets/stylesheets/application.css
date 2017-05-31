@@ -12,4 +12,6 @@
  *
  *= require MDBootstrap/bootstrap
  *= require mdb_private/style
+ *= require font-awesome
+ *= require web/site_style
  */

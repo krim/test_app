@@ -1,0 +1,5 @@
+= simple_form_for [loan, loan.payments.new], remote: true do |f|
+  .row
+    .col-lg-4.pt-1= f.input :expiration,   wrapper: "horizontal_input_checkbox"
+    .col-lg-4.pt-1= f.input :last_payment, wrapper: "horizontal_input_checkbox"
+    .col-lg-4= f.submit t('buttons.create'), class: 'btn btn-danger btn-submit'

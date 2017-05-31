@@ -13,8 +13,7 @@
 //= require jquery
 //= require jquery_ujs
 //= require turbolinks
-//= require fonts
-//= require_tree .
+//= require web/fonts
 
 $(document).on("turbolinks:load", function() {
   window.scrollTo(0, 0);

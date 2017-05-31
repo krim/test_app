@@ -1,0 +1,16 @@
+%h1= I18n.t('activerecord.models.loan.other')
+%table.table.loans_list
+  %thead
+    %tr
+      - %w[title amount term period year_rate expiration_rate can_make_more_payments].each do |column|
+        %th= I18n.t("activerecord.attributes.loan.#{column}")
+  %tbody
+    = render @loans
+= paginate @loans
+
+.container
+  .row
+    .col-lg-12
+      .divider-new.wow.fadeIn.mb-0
+        %h2= I18n.t('loan.new')
+  = render partial: 'web/loans/form', locals: { loan: @loan }

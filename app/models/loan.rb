@@ -9,6 +9,7 @@ class Loan < ApplicationRecord
   validates :amount, numericality: { greater_than: 0 }
   validates :term, :period, :year_rate, :expiration_rate,
             numericality: { greater_than: 0, only_integer: true }
+  validates :period, inclusion: { in: 1..12 }
 
   def year_income_profit
     (rate_paid / amount * MONTHS_IN_YEAR / term * 100).to_i
@@ -32,11 +33,20 @@ class Loan < ApplicationRecord
   end
 
   def last_pay
-    amount - basic_period_pay * (payments.count - 1) + rate_period_pay
+    amount - basic_period_pay * payments_count + rate_period_pay
   end
 
   def rate_paid
     payments.map(&:amount).sum - amount
+  end
+
+  def last_expiration_payment
+    amount - basic_period_pay * payments_count + basic_expiration_pay
+  end
+
+  def payments_count
+    current_payments_count = payments.count - 1
+    current_payments_count.positive? ? current_payments_count : 0
   end
 
   private
