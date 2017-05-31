@@ -212,6 +212,10 @@ GEM
     rails-assets-jquery (3.1.1)
     rails-assets-jquery-migrate (3.0.0)
     rails-assets-tether (1.4.0)
+    rails-controller-testing (1.0.2)
+      actionpack (~> 5.x, >= 5.0.1)
+      actionview (~> 5.x, >= 5.0.1)
+      activesupport (~> 5.x)
     rails-dom-testing (2.0.3)
       activesupport (>= 4.2.0)
       nokogiri (>= 1.6)
@@ -341,6 +345,7 @@ DEPENDENCIES
   rails-assets-MDBootstrap (= 4.3.2)!
   rails-assets-jquery-migrate!
   rails-assets-tether!
+  rails-controller-testing
   rspec-expectations
   rspec-rails (~> 3.5)
   sass-rails (~> 5.0)

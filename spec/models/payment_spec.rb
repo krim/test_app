@@ -16,7 +16,6 @@ RSpec.describe Payment, type: :model do
       #
       #   expect()
       # end
-
     end
   end
 end

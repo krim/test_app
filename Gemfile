@@ -6,22 +6,23 @@ git_source(:github) do |repo_name|
   "https://github.com/#{repo_name}.git"
 end
 
-gem 'rails', '~> 5.0.3'
 gem 'pg'
+gem 'rails', '~> 5.0.3'
 
+gem 'coffee-rails', '~> 4.2'
 gem 'sass-rails', '~> 5.0'
 gem 'uglifier', '>= 1.3.0'
-gem 'coffee-rails', '~> 4.2'
 
-gem 'jquery-rails'
-gem 'turbolinks', '~> 5'
 gem 'autoprefixer-rails'
-gem 'hamlit'
-gem 'font-awesome-rails'
-gem 'kaminari'
-gem 'simple_form'
 gem 'factory_girl_rails'
 gem 'faker'
+gem 'font-awesome-rails'
+gem 'hamlit'
+gem 'jquery-rails'
+gem 'kaminari'
+gem 'rails-controller-testing'
+gem 'simple_form'
+gem 'turbolinks', '~> 5'
 
 group :development, :test do
   gem 'pry-byebug'
@@ -33,23 +34,23 @@ group :test do
   gem 'database_cleaner'
 
   # Rspec
-  gem 'rspec-rails', '~> 3.5'
   gem 'rspec-expectations'
+  gem 'rspec-rails', '~> 3.5'
   gem 'shoulda-matchers'
 end
 
 group :development do
-  gem 'web-console', '>= 3.3.0'
-  gem 'listen', '~> 3.0.5'
-  gem 'spring'
-  gem 'spring-watcher-listen', '~> 2.0.0'
   gem 'capistrano'
   gem 'capistrano-bundler'
   gem 'capistrano-faster-assets', '~> 1.0'
   gem 'capistrano-rails'
   gem 'capistrano-rvm'
   gem 'capistrano-sidekiq'
+  gem 'listen', '~> 3.0.5'
   gem 'puma', '~> 3.0'
+  gem 'spring'
+  gem 'spring-watcher-listen', '~> 2.0.0'
+  gem 'web-console', '>= 3.3.0'
 
   gem 'guard'
   gem 'guard-bundler', require: false
