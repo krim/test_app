@@ -12,6 +12,9 @@
 
 ActiveRecord::Schema.define(version: 20170530153026) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "loans", force: :cascade do |t|
     t.string   "title"
     t.decimal  "amount",                       null: false
@@ -30,7 +33,8 @@ ActiveRecord::Schema.define(version: 20170530153026) do
     t.boolean  "last_payment", default: false, null: false
     t.datetime "created_at",                   null: false
     t.datetime "updated_at",                   null: false
-    t.index ["loan_id"], name: "index_payments_on_loan_id"
+    t.index ["loan_id"], name: "index_payments_on_loan_id", using: :btree
   end
 
+  add_foreign_key "payments", "loans"
 end
