@@ -20,11 +20,11 @@ gem 'hamlit'
 gem 'font-awesome-rails'
 gem 'kaminari'
 gem 'simple_form'
+gem 'factory_girl_rails'
+gem 'faker'
 
 group :development, :test do
   gem 'pry-byebug'
-  gem 'factory_girl_rails'
-  gem 'faker'
 end
 
 group :test do

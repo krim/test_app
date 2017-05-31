@@ -1,3 +1,4 @@
+Loan.destroy_all
 loan = FactoryGirl.create(:loan)
 loan.term.times do
   loan.create_payment!(expiration: false, last_payment: false)
