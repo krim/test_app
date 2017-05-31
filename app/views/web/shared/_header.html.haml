@@ -1,10 +1,4 @@
 %header
   %nav.navbar.navbar-dark.fixed-top.navbar-toggleable-md.scrolling-navbar
     .container.smooth-scroll
-      %button.navbar-toggler.navbar-toggler-right{"aria-controls" => "navbarNav", "aria-expanded" => "false", "aria-label" => "Toggle navigation", "data-target" => "#navbarNav", "data-toggle" => "collapse", type: "button"}
-        %span.navbar-toggler-icon
       = link_to 'TestApp', root_path, class: 'navbar-brand'
-      #navbarNav.collapse.navbar-collapse
-        %ul.navbar-nav.mr-auto
-          %li.nav-item= link_to I18n.t('activerecord.models.loan.other'), loans_path, class: 'nav-link'
-          %li.nav-item= link_to 'Calculator', calculators_path, class: 'nav-link'

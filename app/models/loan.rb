@@ -1,6 +1,9 @@
 class Loan < ApplicationRecord
   MONTHS_IN_YEAR = 12
+  YEAR_BASE_RATE = 30
+
   include Loan::LoanBasic
+  include Loan::LoanProfit
 
   has_many :payments, dependent: :destroy
 
@@ -12,7 +15,8 @@ class Loan < ApplicationRecord
   validates :period, inclusion: { in: 1..12 }
 
   def year_income_profit
-    (rate_paid / amount * MONTHS_IN_YEAR / term * 100).to_i
+    profit = (rate_paid / amount * MONTHS_IN_YEAR / term * 100).to_i
+    profit.positive? ? profit : 0
   end
 
   def fully_paid?

@@ -38,7 +38,7 @@ RSpec.describe Loan, type: :model do
     subject(:loan) { create(:loan) }
 
     it 'can create payments' do
-      6.times do |i|
+      loan.term.times do |i|
         expect { loan.create_payment!(expiration: false, last_payment: false) }.to change { loan.payments.count }.from(i).to(i + 1)
       end
 
@@ -46,12 +46,12 @@ RSpec.describe Loan, type: :model do
     end
 
     it 'can calculate payments' do
-      6.times do
+      loan.term.times do
         payment = loan.create_payment!(expiration: false, last_payment: false)
         expect(payment.amount.to_f.round(2)).to eq(191_666.67)
       end
 
-      expect(loan.year_income_profit.to_f).to eq(30)
+      expect(loan.year_income_profit).to eq(30)
     end
 
     it 'can calculate expiration payment' do
@@ -60,20 +60,49 @@ RSpec.describe Loan, type: :model do
       expect(payment.amount.to_f.round(2)).to eq(208_333.33)
 
       3.times { loan.create_payment!(expiration: true, last_payment: false) }
-      expect(loan.year_income_profit.to_f).to eq(43)
+      expect(loan.year_income_profit).to eq(43)
     end
 
     it 'can calculate last payment' do
       3.times { loan.create_payment!(expiration: false, last_payment: false) }
       payment = loan.create_payment!(expiration: false, last_payment: true)
       expect(payment.amount.to_f.round(2)).to eq(525_000.0)
-      expect(loan.year_income_profit.to_f).to eq(20)
+      expect(loan.year_income_profit).to eq(20)
     end
 
     it 'can calculate expiration and last payment' do
       payment = loan.create_payment!(expiration: true, last_payment: true)
       expect(payment.amount.to_f.round(2)).to eq(1_041_666.67)
-      expect(loan.year_income_profit.to_f).to eq(8)
+      expect(loan.year_income_profit).to eq(8)
+    end
+  end
+
+  describe "#profit" do
+    subject(:loan) { create(:loan) }
+    it 'can calculate year profit without payments' do
+      expect(loan.year_income_profit).to eq(0)
+      expect(Loan.year_income_profit_real).to eq(0)
+      expect(Loan.year_income_profit_optimistic).to eq(30)
+    end
+
+    context 'with three loans' do
+      let(:loan1) { create(:loan) }
+      let(:loan2) { create(:loan) }
+      let(:loan3) { create(:loan) }
+
+      it 'can calculate year profit' do
+        loan1.term.times { loan.create_payment!(expiration: false, last_payment: false) }
+
+        2.times { loan2.create_payment!(expiration: false, last_payment: false) }
+        loan2.create_payment!(expiration: true, last_payment: false)
+        3.times { loan2.create_payment!(expiration: true, last_payment: false) }
+
+        3.times { loan3.create_payment!(expiration: false, last_payment: false) }
+        loan3.create_payment!(expiration: false, last_payment: true)
+
+        expect(Loan.year_income_profit_real).to eq(31)
+        expect(Loan.year_income_profit_optimistic).to eq(30)
+      end
     end
   end
 end

@@ -6,5 +6,9 @@ ru:
   buttons:
     create: 'Создать'
   profit:
-    title: 'Доходность'
-    year: 'Доходность годовых'
+    title:
+      loan: 'Доходность'
+      all: 'Общая годовая доходность'
+    year_income_profit: 'Доходность годовых'
+    year_income_profit_real: 'Доходность годовых(реалистично)'
+    year_income_profit_optimistic: 'Доходность годовых(оптимистично)'

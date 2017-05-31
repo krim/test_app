@@ -7,15 +7,16 @@
     %tr
       - %w[amount month expiration last_payment].each do |column|
         %th= I18n.t("activerecord.attributes.payment.#{column}")
-
   %tbody
     = render @loan.payments
 
-.divider-new.wow.fadeIn.mb-0
-  %h2= I18n.t('profit.title')
-.container
-  %p
-    = "#{I18n.t('profit.year')}: #{number_to_percentage @loan.year_income_profit, precision: 0}"
+
+#loan_profit{class: @loan.can_make_more_payments? ? 'd-none' : ''}
+  .divider-new.wow.fadeIn.mb-0
+    %h2= I18n.t('profit.title.loan')
+  .container
+    %p
+      = "#{I18n.t('profit.year_income_profit')}: #{number_to_percentage @loan.year_income_profit, precision: 0}"
 
 - if @loan.can_make_more_payments?
   .container#new_payment_container
